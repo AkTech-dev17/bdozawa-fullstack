@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home'; 
 import ReportItem from './pages/ReportItem';
 import Feed from './pages/Feed'; 
-import Footer from './components/Footer'; // <-- New import
+import Footer from './components/Footer';
 import './App.css';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
           </Routes>
         </main>
 
-        <Footer /> {/* <-- Added the Footer here */}
+        <Footer />
         
       </div>
     </Router>
