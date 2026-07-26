@@ -1,29 +1,93 @@
-// src/components/ItemCard.tsx
-import React from 'react';
-
-// Defining our Props (What data this card needs to display)
-interface ItemProps {
+interface ItemCardProps {
+  id: number; // Add this so the card knows its database ID!
   title: string;
   description: string;
   type: string;
   contact_info: string;
 }
 
-const ItemCard: React.FC<ItemProps> = ({ title, description, type, contact_info }) => {
-  // Dynamic styling based on whether it's lost or found
-  const badgeColor = type === 'lost' ? '#f85149' : '#238636'; 
+const ItemCard = ({ id, title, description, type, contact_info }: ItemCardProps) => {
+  const isLost = type.toLowerCase() === 'lost';
+
+  // The function to talk to Laravel's delete route
+  const handleDelete = async (itemId: number) => {
+    if (!window.confirm("Are you sure this item has been resolved?")) return;
+
+    try {
+      const response = await fetch(`http://localhost:8000/api/items/${itemId}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        alert('Item successfully resolved and removed!');
+        window.location.reload(); // Refresh to update the feed
+      } else {
+        alert('Failed to delete the item.');
+      }
+    } catch (error) {
+      console.error("Error deleting item:", error);
+    }
+  };
 
   return (
-    <div style={{ backgroundColor: '#161b22', padding: '1.5rem', borderRadius: '8px', border: '1px solid #30363d', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h3 style={{ color: '#58a6ff', margin: 0 }}>{title}</h3>
-        <span style={{ backgroundColor: badgeColor, color: 'white', padding: '0.3rem 0.8rem', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>
+    <div style={{ 
+      backgroundColor: '#1f2937', 
+      padding: '1.5rem', 
+      borderRadius: '12px', 
+      border: '1px solid #374151',
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+    }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+        <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#f9fafb', margin: 0 }}>
+          {title}
+        </h3>
+        
+        {/* Dynamic Badge: Red for Lost, Green for Found */}
+        <span style={{ 
+          padding: '0.25rem 0.75rem', 
+          borderRadius: '999px', 
+          fontSize: '0.875rem',
+          fontWeight: 'bold',
+          backgroundColor: isLost ? '#7f1d1d' : '#14532d',
+          color: isLost ? '#fca5a5' : '#86efac'
+        }}>
           {type}
         </span>
       </div>
-      <p style={{ color: '#c9d1d9', fontSize: '0.95rem', lineHeight: '1.5' }}>{description}</p>
-      <hr style={{ borderColor: '#30363d', margin: '0.5rem 0' }} />
-      <p style={{ color: '#8b949e', fontSize: '0.9rem' }}>📞 Contact: {contact_info}</p>
+      
+      <p style={{ color: '#d1d5db', marginBottom: '1.5rem', lineHeight: '1.5' }}>
+        {description}
+      </p>
+      
+      {/* Contact Info Box */}
+      <div style={{ 
+        backgroundColor: '#111827', 
+        padding: '0.75rem 1rem', 
+        borderRadius: '8px', 
+        fontSize: '0.9rem',
+        border: '1px solid #1f2937',
+        marginBottom: '1rem' // Added bottom margin to separate from the button
+      }}>
+        <span style={{ color: '#9ca3af' }}>Contact: </span>
+        <span style={{ color: '#60a5fa', fontWeight: '500' }}>{contact_info}</span>
+      </div>
+
+      {/* New Resolve Button */}
+      <button 
+        onClick={() => handleDelete(id)}
+        style={{
+          width: '100%',
+          padding: '0.75rem',
+          backgroundColor: '#ef4444', // Tailwind red-500
+          color: 'white',
+          fontWeight: 'bold',
+          border: 'none',
+          borderRadius: '8px',
+          cursor: 'pointer'
+        }}
+      >
+        Mark as Resolved
+      </button>
     </div>
   );
 };

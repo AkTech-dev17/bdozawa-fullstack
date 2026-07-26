@@ -72,13 +72,14 @@ const Feed = () => {
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           {filteredItems.map((item) => (
-            <ItemCard 
-              key={item.id} 
-              title={item.title} 
-              description={item.description} 
-              type={item.type} 
-              contact_info={item.contact_info} 
-            />
+          <ItemCard 
+  key={item.id} 
+  id={item.id} // YOU MUST ADD THIS LINE
+  title={item.title} 
+  description={item.description} 
+  type={item.type} 
+  contact_info={item.contact_info} 
+/>
           ))}
         </div>
       )}
