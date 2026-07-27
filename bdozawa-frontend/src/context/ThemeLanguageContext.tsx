@@ -161,19 +161,17 @@ export const ThemeLanguageProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     document.documentElement.dir = dir;
-  }, [dir]);
+    document.documentElement.style.backgroundColor = theme === 'dark' ? '#0d1117' : '#ffffff';
+    document.documentElement.style.color = theme === 'dark' ? '#ffffff' : '#111827';
+  }, [dir, theme]);
 
   const t = (key: string): string => {
     return translations[language][key] || key;
   };
 
-  const isDark = theme === 'dark';
-
   return (
     <ThemeLanguageContext.Provider value={{ language, setLanguage, theme, toggleTheme, t, dir }}>
-      <div dir={dir} style={{ width: '100%', minHeight: '100vh', backgroundColor: isDark ? '#0d1117' : '#ffffff', color: isDark ? '#ffffff' : '#111827', textAlign: dir === 'rtl' ? 'right' : 'left' }}>
-        {children}
-      </div>
+      {children}
     </ThemeLanguageContext.Provider>
   );
 };

@@ -96,7 +96,7 @@ const Home = () => {
         <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           <Link to="/register" style={{
             padding: '0.75rem 1.5rem',
-            backgroundColor: '#60a5fa',
+            backgroundColor: '#f59e0b', // Diwaxan warm gold accent
             color: '#0d1117',
             borderRadius: '8px',
             fontWeight: 'bold',
@@ -147,7 +147,7 @@ const Home = () => {
             top: '50%',
             transform: 'translateY(-50%)',
             padding: '0.6rem 1.25rem',
-            backgroundColor: '#60a5fa',
+            backgroundColor: '#f59e0b', // Diwaxan warm gold accent
             color: '#0d1117',
             border: 'none',
             borderRadius: '8px',
@@ -166,11 +166,11 @@ const Home = () => {
       <section>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
-            <span style={{ color: '#60a5fa', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>{t('browseCategory')}</span>
+            <span style={{ color: '#f59e0b', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>{t('browseCategory')}</span>
             <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginTop: '0.25rem', color: '#f0f6fc' }}>{t('whatAreYouLookingFor')}</h2>
             <p style={{ color: '#8b949e', fontSize: '0.95rem', marginTop: '0.25rem' }}>{t('jumpStraight')}</p>
           </div>
-          <Link to="/search" style={{ color: '#60a5fa', textDecoration: 'none', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <Link to="/search" style={{ color: '#f59e0b', textDecoration: 'none', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '6px' }}>
             {t('viewAll')} <FiArrowRight style={{ transform: dir === 'rtl' ? 'scaleX(-1)' : 'none' }} />
           </Link>
         </div>
@@ -189,7 +189,7 @@ const Home = () => {
               gap: '1rem',
               transition: 'border-color 0.2s'
             }}>
-              <div style={{ color: '#60a5fa', backgroundColor: '#0d1117', width: '45px', height: '45px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid #30363d' }}>
+              <div style={{ color: '#f59e0b', backgroundColor: '#0d1117', width: '45px', height: '45px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid #30363d' }}>
                 {cat.icon}
               </div>
               <div>
@@ -211,7 +211,7 @@ const Home = () => {
               <span style={{ color: '#ef4444', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>{t('lostItems')}</span>
               <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginTop: '0.25rem' }}>{t('oneOfTheseYours')}</h2>
             </div>
-            <Link to="/search?type=lost" style={{ color: '#60a5fa', textDecoration: 'none', fontSize: '0.9rem' }}>{t('viewAll')} →</Link>
+            <Link to="/search?type=lost" style={{ color: '#f59e0b', textDecoration: 'none', fontSize: '0.9rem' }}>{t('viewAll')} →</Link>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -222,7 +222,7 @@ const Home = () => {
                   <h4 style={{ fontSize: '1.1rem', fontWeight: 'bold', marginTop: '0.5rem', color: '#f0f6fc' }}>{item.title}</h4>
                   <p style={{ color: '#8b949e', fontSize: '0.85rem', marginTop: '0.25rem' }}>{item.description}</p>
                 </div>
-                <span style={{ color: '#58a6ff', fontSize: '0.85rem' }}>{item.contact_info}</span>
+                <span style={{ color: '#f59e0b', fontSize: '0.85rem' }}>{item.contact_info}</span>
               </div>
             ))}
           </div>
@@ -235,7 +235,7 @@ const Home = () => {
               <span style={{ color: '#10b981', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>{t('foundItems')}</span>
               <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginTop: '0.25rem' }}>{t('recentlyFound')}</h2>
             </div>
-            <Link to="/search?type=found" style={{ color: '#60a5fa', textDecoration: 'none', fontSize: '0.9rem' }}>{t('viewAll')} →</Link>
+            <Link to="/search?type=found" style={{ color: '#f59e0b', textDecoration: 'none', fontSize: '0.9rem' }}>{t('viewAll')} →</Link>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -246,7 +246,7 @@ const Home = () => {
                   <h4 style={{ fontSize: '1.1rem', fontWeight: 'bold', marginTop: '0.5rem', color: '#f0f6fc' }}>{item.title}</h4>
                   <p style={{ color: '#8b949e', fontSize: '0.85rem', marginTop: '0.25rem' }}>{item.description}</p>
                 </div>
-                <span style={{ color: '#58a6ff', fontSize: '0.85rem' }}>{item.contact_info}</span>
+                <span style={{ color: '#f59e0b', fontSize: '0.85rem' }}>{item.contact_info}</span>
               </div>
             ))}
           </div>
@@ -256,7 +256,7 @@ const Home = () => {
 
       {/* 5. HOW IT WORKS */}
       <section id="how-it-works" style={{ textAlign: 'center', padding: '2rem 0' }}>
-        <span style={{ color: '#60a5fa', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>{t('howItWorks')}</span>
+        <span style={{ color: '#f59e0b', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>{t('howItWorks')}</span>
         <h2 style={{ fontSize: '2.2rem', fontWeight: 'bold', marginTop: '0.25rem', marginBottom: '0.5rem' }}>Four simple steps to a happy ending</h2>
         <p style={{ color: '#8b949e', marginBottom: '3rem' }}>No accounts to wrestle with, no friction — just a clear path from lost to found.</p>
 
@@ -269,7 +269,7 @@ const Home = () => {
           ].map((s, idx) => (
             <div key={idx} style={{ backgroundColor: '#161b22', border: '1px solid #30363d', borderRadius: '12px', padding: '1.75rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div style={{ color: '#60a5fa', backgroundColor: '#0d1117', width: '40px', height: '40px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ color: '#f59e0b', backgroundColor: '#0d1117', width: '40px', height: '40px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <HiOutlineSparkles size={20} />
                 </div>
                 <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#30363d' }}>{s.step}</span>
@@ -283,7 +283,7 @@ const Home = () => {
 
       {/* 6. SUCCESS STORIES */}
       <section id="success-stories" style={{ textAlign: 'center', padding: '2rem 0' }}>
-        <span style={{ color: '#60a5fa', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>{t('successStories')}</span>
+        <span style={{ color: '#f59e0b', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>{t('successStories')}</span>
         <h2 style={{ fontSize: '2.2rem', fontWeight: 'bold', marginTop: '0.25rem', marginBottom: '0.5rem' }}>{t('realReunions')}</h2>
         <p style={{ color: '#8b949e', marginBottom: '3rem' }}>{t('peopleReconnect')}</p>
 
@@ -296,7 +296,7 @@ const Home = () => {
             <div key={idx} style={{ backgroundColor: '#161b22', border: '1px solid #30363d', borderRadius: '12px', padding: '1.75rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '1.5rem' }}>
               <p style={{ color: '#c9d1d9', fontSize: '0.95rem', lineHeight: '1.5', fontStyle: 'italic' }}>"{story.quote}"</p>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexDirection: dir === 'rtl' ? 'row-reverse' : 'row' }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#21262d', color: '#58a6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '0.9rem' }}>
+                <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#21262d', color: '#f59e0b', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '0.9rem' }}>
                   {story.name.charAt(0)}
                 </div>
                 <div>
@@ -312,7 +312,7 @@ const Home = () => {
       {/* 7. FAQ SECTION */}
       <section style={{ maxWidth: '800px', margin: '0 auto', width: '100%', padding: '2rem 0' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <span style={{ color: '#60a5fa', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>FAQ</span>
+          <span style={{ color: '#f59e0b', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>FAQ</span>
           <h2 style={{ fontSize: '2.2rem', fontWeight: 'bold', marginTop: '0.25rem', marginBottom: '0.5rem' }}>Questions, answered</h2>
           <p style={{ color: '#8b949e' }}>Everything you need to feel confident using Bdozawa.</p>
         </div>
@@ -353,12 +353,12 @@ const Home = () => {
         </div>
       </section>
 
-{/* 8. BOTTOM CALL-TO-ACTION BANNER */}
+      {/* 8. BOTTOM CALL-TO-ACTION BANNER */}
       <section style={{ backgroundColor: '#161b22', border: '1px solid #30363d', borderRadius: '16px', padding: '3rem 2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
         <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#f0f6fc' }}>{t('lostSomethingTitle')}</h2>
         <p style={{ color: '#8b949e', maxWidth: '500px', fontSize: '0.95rem' }}>{t('lostSomethingSubtitle')}</p>
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Link to="/register" style={{ padding: '0.75rem 1.5rem', backgroundColor: '#60a5fa', color: '#0d1117', borderRadius: '8px', fontWeight: 'bold', textDecoration: 'none' }}>
+          <Link to="/register" style={{ padding: '0.75rem 1.5rem', backgroundColor: '#f59e0b', color: '#0d1117', borderRadius: '8px', fontWeight: 'bold', textDecoration: 'none' }}>
             {t('reportAnItem')}
           </Link>
           <Link to="/search" style={{ padding: '0.75rem 1.5rem', backgroundColor: '#0d1117', color: '#ffffff', border: '1px solid #30363d', borderRadius: '8px', fontWeight: 'bold', textDecoration: 'none' }}>

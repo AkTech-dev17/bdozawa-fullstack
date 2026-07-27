@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api', // Match your local Laravel API URL
+  baseURL: 'http://localhost/bdozawa/bdozawa-backend/public/api',
 });
 
 api.interceptors.request.use((config) => {
