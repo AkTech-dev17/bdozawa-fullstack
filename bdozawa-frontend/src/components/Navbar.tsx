@@ -14,10 +14,11 @@ const Navbar = () => {
 
   const isDark = theme === 'dark';
 
+  // Mapped language codes ('ku', 'en', 'ar') to match ThemeLanguageContext & Axios
   const languages = [
-    { name: 'Kurdish (Sorani)', native: 'کوردی' },
-    { name: 'English', native: 'English' },
-    { name: 'Arabic', native: 'العربية' },
+    { code: 'ku', name: 'Kurdish (Sorani)', native: 'کوردی' },
+    { code: 'en', name: 'English', native: 'English' },
+    { code: 'ar', name: 'Arabic', native: 'العربية' },
   ] as const;
 
   // Function to smoothly scroll to sections on the Home page
@@ -58,7 +59,7 @@ const Navbar = () => {
               width: '198px', 
               height: '38px', 
               objectFit: 'contain', 
-              filter: isDark ? 'brightness(0) invert(1)' : 'none' // Turns it pure white in dark mode
+              filter: isDark ? 'brightness(0) invert(1)' : 'none'
             }} 
           />
           <h1 style={{ color: isDark ? '#ffffff' : '#111827', fontSize: '1.5rem', margin: 0, fontWeight: 'bold' }}>
@@ -125,12 +126,12 @@ const Navbar = () => {
                 zIndex: 100
               }}>
                 {languages.map((lang) => {
-                  const isSelected = language === lang.name;
+                  const isSelected = language === (lang.code as unknown);
                   return (
                     <div 
-                      key={lang.name}
+                      key={lang.code}
                       onClick={() => {
-                        setLanguage(lang.name as never);
+                        setLanguage(lang.code as never);
                         setIsLangOpen(false);
                       }}
                       style={{

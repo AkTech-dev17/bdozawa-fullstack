@@ -1,0 +1,11 @@
+{
+  "welcome": "Welcome to Bdozawa",
+  "tagline": "Find your lost items easily",
+  "search_placeholder": "Search for lost things...",
+  "language": "Language",
+  "nav": {
+    "home": "Home",
+    "items": "Lost Items",
+    "report": "Report Lost Item"
+  }
+}
