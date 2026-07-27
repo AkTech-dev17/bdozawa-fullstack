@@ -1,179 +1,185 @@
-import { Link } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi';
-import { FcGoogle } from 'react-icons/fc';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { FiMail, FiLock, FiAlertCircle, FiArrowLeft, FiShield, FiUsers } from 'react-icons/fi';
 import { HiOutlineSparkles } from 'react-icons/hi2';
-import { MdOutlineEmail } from 'react-icons/md';
+import { FcGoogle } from 'react-icons/fc';
+import logoImg from '../assets/bdozawa.png';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !password) {
+      setError(true);
+      setTimeout(() => setError(false), 3000);
+      return;
+    }
+    alert('Logged in successfully! (Mock)');
+    navigate('/');
+  };
+
   return (
-    <div style={{ 
-      minHeight: '100vh', 
-      backgroundColor: '#0d1117', 
-      color: '#ffffff',
-      display: 'flex',
-      flexDirection: 'column'
-    }}>
+    <div style={{ width: '100vw', height: '100vh', display: 'flex', backgroundColor: '#0d1117', color: '#ffffff', overflow: 'hidden', boxSizing: 'border-box' }}>
       
-      {/* Top Header */}
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center', 
-        padding: '2rem 3rem' 
-      }}>
-        <Link to="/" style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: '8px', 
-          color: '#9ca3af', 
-          textDecoration: 'none',
-          fontSize: '0.95rem'
+      {error && (
+        <div style={{
+          position: 'fixed', top: '24px', left: '50%', transform: 'translateX(-50%)',
+          backgroundColor: '#450a0a', color: '#fca5a5', border: '1px solid #7f1d1d',
+          padding: '12px 24px', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '12px',
+          zIndex: 10000, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)', fontWeight: '600', fontSize: '0.95rem'
         }}>
-          <FiArrowLeft size={18} />
-          Back home
-        </Link>
-        
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 'bold', fontSize: '1.25rem' }}>
-          <span style={{ fontSize: '1.5rem' }}>◵</span> 
+          <FiAlertCircle size={20} />
+          Please fill in all fields
+        </div>
+      )}
+
+      {/* LEFT SIDE - Blue Branding Panel */}
+      <div style={{ 
+        flex: '1', 
+        backgroundColor: '#60a5fa', 
+        color: '#0d1117', 
+        padding: '4rem', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        justifyContent: 'space-between',
+        boxSizing: 'border-box'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '1.5rem', fontWeight: 'bold', letterSpacing: '-0.5px' }}>
+          <img src={logoImg} alt="Bdozawa Logo" style={{ width: '36px', height: '36px', objectFit: 'contain', borderRadius: '6px' }} />
           Bdozawa
         </div>
+
+        <div style={{ maxWidth: '450px' }}>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', lineHeight: '1.2', margin: '0 0 1.5rem 0', color: '#0d1117' }}>
+            Lost something? You're one step away from getting it back.
+          </h1>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '2.5rem' }}>
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+              <div style={{ backgroundColor: 'rgba(13, 17, 23, 0.1)', padding: '10px', borderRadius: '8px', color: '#0d1117' }}>
+                <HiOutlineSparkles size={22} />
+              </div>
+              <div>
+                <h4 style={{ margin: '0 0 4px 0', fontSize: '1.05rem', fontWeight: 'bold' }}>Smart matching</h4>
+                <p style={{ margin: 0, fontSize: '0.9rem', color: '#1f2937', opacity: 0.85 }}>Find likely matches instantly.</p>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+              <div style={{ backgroundColor: 'rgba(13, 17, 23, 0.1)', padding: '10px', borderRadius: '8px', color: '#0d1117' }}>
+                <FiShield size={22} />
+              </div>
+              <div>
+                <h4 style={{ margin: '0 0 4px 0', fontSize: '1.05rem', fontWeight: 'bold' }}>Private & secure</h4>
+                <p style={{ margin: 0, fontSize: '0.9rem', color: '#1f2937', opacity: 0.85 }}>Your details stay yours.</p>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+              <div style={{ backgroundColor: 'rgba(13, 17, 23, 0.1)', padding: '10px', borderRadius: '8px', color: '#0d1117' }}>
+                <FiUsers size={22} />
+              </div>
+              <div>
+                <h4 style={{ margin: '0 0 4px 0', fontSize: '1.05rem', fontWeight: 'bold' }}>Trusted community</h4>
+                <p style={{ margin: 0, fontSize: '0.9rem', color: '#1f2937', opacity: 0.85 }}>126k+ verified members.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ fontSize: '0.85rem', color: '#1f2937', opacity: 0.8 }}>
+          © 2026 Bdozawa
+        </div>
       </div>
 
-      {/* Centered Form Container */}
-      <div style={{ 
-        flex: 1, 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center',
-        paddingBottom: '10vh'
-      }}>
+      {/* RIGHT SIDE - Dark Login Form Panel */}
+      <div style={{ flex: '1', backgroundColor: '#0d1117', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '2rem', position: 'relative', boxSizing: 'border-box', overflowY: 'auto' }}>
+        
+        <Link 
+          to="/" 
+          style={{ position: 'absolute', top: '2rem', right: '3rem', color: '#8b949e', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', fontWeight: '500' }}
+        >
+          <FiArrowLeft size={16} /> Back home
+        </Link>
+
         <div style={{ width: '100%', maxWidth: '380px' }}>
           
-          <h2 style={{ fontSize: '1.75rem', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-            Welcome back
-          </h2>
-          <p style={{ color: '#9ca3af', marginBottom: '2rem', fontSize: '0.95rem' }}>
-            Sign in to manage your listings and messages.
-          </p>
+          <div style={{ marginBottom: '2rem' }}>
+            <h2 style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#f0f6fc', margin: '0 0 0.5rem 0' }}>Welcome back</h2>
+            <p style={{ color: '#8b949e', fontSize: '0.95rem', margin: 0 }}>Sign in to manage your listings and messages.</p>
+          </div>
 
-          {/* Google Button */}
-          <button style={{
-            width: '100%',
-            padding: '0.75rem',
-            backgroundColor: '#0d1117',
-            border: '1px solid #30363d',
-            borderRadius: '8px',
-            color: 'white',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '10px',
-            fontSize: '0.95rem',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            marginBottom: '1.5rem'
-          }}>
-            <FcGoogle size={20} />
-            Google
+          <button 
+            onClick={() => alert('Google Sign-in Mock')}
+            style={{ width: '100%', padding: '0.75rem', backgroundColor: '#161b22', border: '1px solid #30363d', borderRadius: '8px', color: '#f0f6fc', fontWeight: '600', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', cursor: 'pointer', marginBottom: '1.25rem', fontSize: '0.95rem' }}
+          >
+            <FcGoogle size={20} /> Google
           </button>
 
-          {/* Divider */}
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1.5rem' }}>
-            <div style={{ flex: 1, height: '1px', backgroundColor: '#30363d' }}></div>
-            <span style={{ padding: '0 10px', color: '#6b7280', fontSize: '0.85rem' }}>or continue with email</span>
-            <div style={{ flex: 1, height: '1px', backgroundColor: '#30363d' }}></div>
+          <div style={{ display: 'flex', alignItems: 'center', textAlign: 'center', color: '#8b949e', fontSize: '0.8rem', margin: '1.25rem 0' }}>
+            <div style={{ flex: '1', borderBottom: '1px solid #30363d' }}></div>
+            <span style={{ padding: '0 10px' }}>or continue with email</span>
+            <div style={{ flex: '1', borderBottom: '1px solid #30363d' }}></div>
           </div>
 
-          {/* Email Input */}
-          <div style={{ marginBottom: '1.25rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: '500' }}>Email</label>
-            <input 
-              type="email" 
-              placeholder="you@example.com" 
-              style={{
-                width: '100%',
-                padding: '0.75rem 1rem',
-                backgroundColor: '#0d1117',
-                border: '1px solid #30363d',
-                borderRadius: '8px',
-                color: 'white',
-                fontSize: '0.95rem',
-                outline: 'none',
-                boxSizing: 'border-box'
-              }}
-            />
-          </div>
-
-          {/* Password Input with Forgot Link */}
-          <div style={{ marginBottom: '1.5rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-              <label style={{ fontSize: '0.9rem', fontWeight: '500' }}>Password</label>
-              <span style={{ color: '#60a5fa', fontSize: '0.85rem', cursor: 'pointer' }}>Forgot?</span>
+          <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <div>
+              <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 'bold', color: '#f0f6fc', marginBottom: '0.5rem' }}>Email</label>
+              <div style={{ position: 'relative' }}>
+                <FiMail size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: '#8b949e' }} />
+                <input 
+                  type="email" 
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  style={{ width: '100%', padding: '0.75rem 1rem 0.75rem 2.75rem', backgroundColor: '#161b22', border: '1px solid #30363d', borderRadius: '8px', color: '#f0f6fc', fontSize: '0.95rem', outline: 'none', boxSizing: 'border-box' }}
+                  onFocus={(e) => e.target.style.borderColor = '#60a5fa'}
+                  onBlur={(e) => e.target.style.borderColor = '#30363d'}
+                />
+              </div>
             </div>
-            <input 
-              type="password" 
-              placeholder="••••••••" 
-              style={{
-                width: '100%',
-                padding: '0.75rem 1rem',
-                backgroundColor: '#0d1117',
-                border: '1px solid #30363d',
-                borderRadius: '8px',
-                color: 'white',
-                fontSize: '0.95rem',
-                outline: 'none',
-                letterSpacing: '2px',
-                boxSizing: 'border-box'
-              }}
-            />
-          </div>
 
-          {/* Submit Button */}
-          <button style={{
-            width: '100%',
-            padding: '0.85rem',
-            backgroundColor: '#60a5fa',
-            color: '#0d1117',
-            border: 'none',
-            borderRadius: '8px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px',
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            marginBottom: '1.5rem'
-          }}>
-            <MdOutlineEmail size={20} />
-            Sign in
-          </button>
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                <label style={{ fontSize: '0.85rem', fontWeight: 'bold', color: '#f0f6fc' }}>Password</label>
+                <a href="#forgot" onClick={(e) => e.preventDefault()} style={{ fontSize: '0.85rem', color: '#60a5fa', textDecoration: 'none' }}>Forgot?</a>
+              </div>
+              <div style={{ position: 'relative' }}>
+                <FiLock size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: '#8b949e' }} />
+                <input 
+                  type="password" 
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  style={{ width: '100%', padding: '0.75rem 1rem 0.75rem 2.75rem', backgroundColor: '#161b22', border: '1px solid #30363d', borderRadius: '8px', color: '#f0f6fc', fontSize: '0.95rem', outline: 'none', boxSizing: 'border-box' }}
+                  onFocus={(e) => e.target.style.borderColor = '#60a5fa'}
+                  onBlur={(e) => e.target.style.borderColor = '#30363d'}
+                />
+              </div>
+            </div>
 
-          {/* Bottom Links */}
-          <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <button style={{ 
-              background: 'none', 
-              border: 'none', 
-              color: '#60a5fa', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              gap: '6px',
-              fontSize: '0.95rem',
-              fontWeight: '500',
-              cursor: 'pointer' 
-            }}>
-              <HiOutlineSparkles size={18} />
-              Email me a magic link instead
+            <button type="submit" style={{ width: '100%', padding: '0.75rem', backgroundColor: '#60a5fa', color: '#0d1117', border: 'none', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.95rem', marginTop: '0.25rem' }}>
+              Sign in
             </button>
-            
-            <div style={{ color: '#9ca3af', fontSize: '0.95rem' }}>
-              New here? <Link to="/register" style={{ color: '#60a5fa', textDecoration: 'none', fontWeight: 'bold' }}>Create an account</Link>
-            </div>
+          </form>
+
+          <div style={{ textAlign: 'center', marginTop: '1.25rem' }}>
+            <a href="#magic" onClick={(e) => { e.preventDefault(); alert('Magic link sent! (Mock)'); }} style={{ fontSize: '0.85rem', color: '#60a5fa', textDecoration: 'none' }}>
+              Email me a magic link instead
+            </a>
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.9rem', color: '#8b949e' }}>
+            New here? <Link to="/register" style={{ color: '#60a5fa', textDecoration: 'none', fontWeight: 'bold' }}>Create an account</Link>
           </div>
 
         </div>
       </div>
+
     </div>
   );
 };

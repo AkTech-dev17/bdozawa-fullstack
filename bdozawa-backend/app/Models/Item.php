@@ -9,13 +9,11 @@ class Item extends Model
 {
     use HasFactory;
 
-    // This allows us to insert data into these specific columns
+    // This tells Laravel: "It is safe to save data into these specific columns!"
     protected $fillable = [
         'title',
         'description',
         'type',
-        'location',
-        'image_path',
-        'contact_info',
+        'contact_info'
     ];
 }

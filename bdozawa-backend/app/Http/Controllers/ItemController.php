@@ -3,31 +3,40 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Item; // Imports your model
+use App\Models\Item;
 
 class ItemController extends Controller
 {
-    // 1. Fetch all items (Read)
+    // Fetch items to display on the feed
     public function index()
     {
-        $items = Item::all();
-        return response()->json($items, 200);
+        return Item::orderBy('created_at', 'desc')->get();
     }
 
-    // 2. Create a new item (Create)
+    // Save a brand new item from your React form
     public function store(Request $request)
     {
-        // Validate the incoming data from React
         $request->validate([
-            'title' => 'required|string',
+            'title' => 'required|string|max:255',
             'description' => 'required|string',
             'type' => 'required|string',
             'contact_info' => 'required|string',
         ]);
 
-        // Save it to the database
         $item = Item::create($request->all());
-        
+
         return response()->json($item, 201);
+    }
+    // Delete an item when it is resolved
+    public function destroy($id)
+    {
+        $item = Item::find($id);
+        
+        if ($item) {
+            $item->delete();
+            return response()->json(['message' => 'Item successfully removed!'], 200);
+        }
+
+        return response()->json(['message' => 'Item not found.'], 404);
     }
 }

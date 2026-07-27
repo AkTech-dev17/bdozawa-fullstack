@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FiSun, FiMoon, FiSearch } from 'react-icons/fi';
 import { IoLanguageOutline } from 'react-icons/io5';
 import { useThemeLanguage } from '../context/ThemeLanguageContext';
+import logoImg from '../assets/bdozawa.png';
 
 const Navbar = () => {
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -49,9 +50,18 @@ const Navbar = () => {
       
       {/* Left Side: Logo & Navigation Links */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '3rem' }}>
-        <Link to="/" style={{ textDecoration: 'none' }}>
-          <h1 style={{ color: isDark ? '#ffffff' : '#111827', fontSize: '1.5rem', margin: 0, fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '1.8rem' }}>◵</span> 
+        <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <img 
+            src={logoImg} 
+            alt="Bdozawa Logo" 
+            style={{ 
+              width: '198px', 
+              height: '38px', 
+              objectFit: 'contain', 
+              filter: isDark ? 'brightness(0) invert(1)' : 'none' // Turns it pure white in dark mode
+            }} 
+          />
+          <h1 style={{ color: isDark ? '#ffffff' : '#111827', fontSize: '1.5rem', margin: 0, fontWeight: 'bold' }}>
             Bdozawa
           </h1>
         </Link>

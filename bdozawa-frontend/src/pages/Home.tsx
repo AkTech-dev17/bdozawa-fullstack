@@ -4,6 +4,8 @@ import axios from 'axios';
 import { FiSearch, FiArrowRight, FiPhone, FiCreditCard, FiKey, FiBriefcase, FiCompass, FiFileText, FiHeart, FiTag, FiEye, FiBox } from 'react-icons/fi';
 import { HiOutlineSparkles } from 'react-icons/hi2';
 import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
+import StatsDashboard from '../components/StatsDashboard';
+import { useThemeLanguage } from '../context/ThemeLanguageContext';
 
 interface Item {
   id: number;
@@ -16,6 +18,7 @@ interface Item {
 const Home = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t, dir } = useThemeLanguage();
   const [items, setItems] = useState<Item[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -67,10 +70,10 @@ const Home = () => {
   ];
 
   const faqs = [
-    { q: 'Is Bdozawa free to use?', a: 'Yes. Reporting lost or found items and connecting with people is completely free. Rewards are optional and set entirely by the person who lost the item.' },
-    { q: 'How do you keep my information safe?', a: 'We protect your contact details and use secure masking channels so you only share personal information when you are ready to verify ownership.' },
+    { q: t('isDozerFree'), a: t('isDozerFreeDesc') },
+    { q: t('howKeepSafe'), a: t('howKeepSafeDesc') },
     { q: 'How does smart matching work?', a: 'Our engine surfaces likely matches by comparing keywords, dates, and locations with a confidence score.' },
-    { q: 'What should I do before meeting someone?', a: 'Always meet in a public, well-lit place (like a cafe or police station lobby) and verify item details before handing over.' },
+    { q: t('whatDoBefore'), a: t('whatDoBeforeDesc') },
     { q: 'Can I offer a reward?', a: 'Yes! You can optionally attach a reward amount when reporting a lost item to encourage quick community returns.' },
   ];
 
@@ -78,16 +81,15 @@ const Home = () => {
   const foundItemsList = items.filter(i => i.type.toLowerCase() === 'found').slice(0, 2);
 
   return (
-    <div style={{ width: '100%', padding: '2rem 3%', color: '#ffffff', display: 'flex', flexDirection: 'column', gap: '5rem', boxSizing: 'border-box' }}>
+    <div style={{ width: '100%', padding: '2rem 3%', color: '#ffffff', display: 'flex', flexDirection: 'column', gap: '5rem', boxSizing: 'border-box', textAlign: dir === 'rtl' ? 'right' : 'left' }}>
     
       {/* 1. HERO SECTION */}
       <section style={{ textAlign: 'center', padding: '3rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
         <h1 style={{ fontSize: '3.5rem', fontWeight: 'bold', maxWidth: '800px', lineHeight: '1.15', color: '#f0f6fc' }}>
-          Reuniting you with <br />
-          <span style={{ color: '#60a5fa' }}>what matters most</span>
+          {t('heroTitle')}
         </h1>
         <p style={{ color: '#8b949e', fontSize: '1.1rem', maxWidth: '600px', lineHeight: '1.5' }}>
-          The world's most sophisticated network for lost and found. Fast, secure, and precision-engineered for modern discovery.
+          {t('heroSubtitle')}
         </p>
 
         {/* Action Buttons */}
@@ -103,7 +105,7 @@ const Home = () => {
             alignItems: 'center',
             gap: '8px'
           }}>
-            Report a lost item <FiArrowRight size={18} />
+            {t('reportLost')} <FiArrowRight size={18} style={{ transform: dir === 'rtl' ? 'scaleX(-1)' : 'none' }} />
           </Link>
           <Link to="/search" style={{
             padding: '0.75rem 1.5rem',
@@ -114,33 +116,34 @@ const Home = () => {
             fontWeight: 'bold',
             textDecoration: 'none'
           }}>
-            I found something
+            {t('foundSomething')}
           </Link>
         </div>
 
         {/* Search Input Bar */}
         <form onSubmit={handleSearchSubmit} style={{ width: '100%', maxWidth: '700px', marginTop: '1.5rem', position: 'relative' }}>
-          <FiSearch size={22} style={{ position: 'absolute', left: '1.25rem', top: '50%', transform: 'translateY(-50%)', color: '#8b949e' }} />
+          <FiSearch size={22} style={{ position: 'absolute', [dir === 'rtl' ? 'right' : 'left']: '1.25rem', top: '50%', transform: 'translateY(-50%)', color: '#8b949e' }} />
           <input 
             type="text" 
-            placeholder="Search for a lost or found item..."
+            placeholder={t('searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{
               width: '100%',
-              padding: '1rem 1rem 1rem 3.5rem',
+              padding: dir === 'rtl' ? '1rem 3.5rem 1rem 1rem' : '1rem 1rem 1rem 3.5rem',
               backgroundColor: '#161b22',
               border: '1px solid #30363d',
               borderRadius: '12px',
               color: 'white',
               fontSize: '1rem',
               outline: 'none',
-              boxSizing: 'border-box'
+              boxSizing: 'border-box',
+              textAlign: dir === 'rtl' ? 'right' : 'left'
             }}
           />
           <button type="submit" style={{
             position: 'absolute',
-            right: '8px',
+            [dir === 'rtl' ? 'left' : 'right']: '8px',
             top: '50%',
             transform: 'translateY(-50%)',
             padding: '0.6rem 1.25rem',
@@ -151,36 +154,24 @@ const Home = () => {
             fontWeight: 'bold',
             cursor: 'pointer'
           }}>
-            Search
+            {t('searchButton')}
           </button>
         </form>
       </section>
 
       {/* 2. STATS BAR */}
-      <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem' }}>
-        {[
-          { label: 'Items reunited', val: '1' },
-          { label: 'Members', val: '23' },
-          { label: 'Active listings', val: items.length > 0 ? items.length.toString() : '3' },
-          { label: 'Reunion rate', val: '25%' }
-        ].map((stat, idx) => (
-          <div key={idx} style={{ backgroundColor: '#161b22', border: '1px solid #30363d', borderRadius: '12px', padding: '1.5rem' }}>
-            <div style={{ color: '#8b949e', fontSize: '0.9rem', marginBottom: '0.5rem' }}>{stat.label}</div>
-            <div style={{ fontSize: '2.2rem', fontWeight: 'bold', color: '#f0f6fc' }}>{stat.val}</div>
-          </div>
-        ))}
-      </section>
+      <StatsDashboard />
 
       {/* 3. BROWSE BY CATEGORY */}
       <section>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
-            <span style={{ color: '#60a5fa', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>Browse by category</span>
-            <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginTop: '0.25rem', color: '#f0f6fc' }}>What are you looking for?</h2>
-            <p style={{ color: '#8b949e', fontSize: '0.95rem', marginTop: '0.25rem' }}>Jump straight to the category that matches your item.</p>
+            <span style={{ color: '#60a5fa', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>{t('browseCategory')}</span>
+            <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginTop: '0.25rem', color: '#f0f6fc' }}>{t('whatAreYouLookingFor')}</h2>
+            <p style={{ color: '#8b949e', fontSize: '0.95rem', marginTop: '0.25rem' }}>{t('jumpStraight')}</p>
           </div>
           <Link to="/search" style={{ color: '#60a5fa', textDecoration: 'none', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '6px' }}>
-            Browse all <FiArrowRight />
+            {t('viewAll')} <FiArrowRight style={{ transform: dir === 'rtl' ? 'scaleX(-1)' : 'none' }} />
           </Link>
         </div>
 
@@ -217,10 +208,10 @@ const Home = () => {
         <section>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1.5rem' }}>
             <div>
-              <span style={{ color: '#ef4444', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>Recently lost</span>
-              <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginTop: '0.25rem' }}>Help reunite these items</h2>
+              <span style={{ color: '#ef4444', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>{t('lostItems')}</span>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginTop: '0.25rem' }}>{t('oneOfTheseYours')}</h2>
             </div>
-            <Link to="/search?type=lost" style={{ color: '#60a5fa', textDecoration: 'none', fontSize: '0.9rem' }}>View all →</Link>
+            <Link to="/search?type=lost" style={{ color: '#60a5fa', textDecoration: 'none', fontSize: '0.9rem' }}>{t('viewAll')} →</Link>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -241,10 +232,10 @@ const Home = () => {
         <section>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1.5rem' }}>
             <div>
-              <span style={{ color: '#10b981', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>Recently found</span>
-              <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginTop: '0.25rem' }}>Is one of these yours?</h2>
+              <span style={{ color: '#10b981', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>{t('foundItems')}</span>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginTop: '0.25rem' }}>{t('recentlyFound')}</h2>
             </div>
-            <Link to="/search?type=found" style={{ color: '#60a5fa', textDecoration: 'none', fontSize: '0.9rem' }}>View all →</Link>
+            <Link to="/search?type=found" style={{ color: '#60a5fa', textDecoration: 'none', fontSize: '0.9rem' }}>{t('viewAll')} →</Link>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -263,13 +254,13 @@ const Home = () => {
 
       </div>
 
-      {/* 5. HOW IT WORKS (Added ID here!) */}
+      {/* 5. HOW IT WORKS */}
       <section id="how-it-works" style={{ textAlign: 'center', padding: '2rem 0' }}>
-        <span style={{ color: '#60a5fa', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>How it works</span>
+        <span style={{ color: '#60a5fa', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>{t('howItWorks')}</span>
         <h2 style={{ fontSize: '2.2rem', fontWeight: 'bold', marginTop: '0.25rem', marginBottom: '0.5rem' }}>Four simple steps to a happy ending</h2>
         <p style={{ color: '#8b949e', marginBottom: '3rem' }}>No accounts to wrestle with, no friction — just a clear path from lost to found.</p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', textAlign: 'left' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', textAlign: dir === 'rtl' ? 'right' : 'left' }}>
           {[
             { step: '1', title: 'Report it', desc: 'Add a photo and a few details. It takes less than a minute.' },
             { step: '2', title: 'Get matched', desc: 'Our engine surfaces likely matches with a confidence score.' },
@@ -290,21 +281,21 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 6. SUCCESS STORIES (Added ID here!) */}
+      {/* 6. SUCCESS STORIES */}
       <section id="success-stories" style={{ textAlign: 'center', padding: '2rem 0' }}>
-        <span style={{ color: '#60a5fa', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>Success stories</span>
-        <h2 style={{ fontSize: '2.2rem', fontWeight: 'bold', marginTop: '0.25rem', marginBottom: '0.5rem' }}>Real reunions, real relief</h2>
-        <p style={{ color: '#8b949e', marginBottom: '3rem' }}>People reconnect with what they thought was gone for good.</p>
+        <span style={{ color: '#60a5fa', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>{t('successStories')}</span>
+        <h2 style={{ fontSize: '2.2rem', fontWeight: 'bold', marginTop: '0.25rem', marginBottom: '0.5rem' }}>{t('realReunions')}</h2>
+        <p style={{ color: '#8b949e', marginBottom: '3rem' }}>{t('peopleReconnect')}</p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem', textAlign: 'left' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem', textAlign: dir === 'rtl' ? 'right' : 'left' }}>
           {[
-            { quote: 'I lost my grandmother’s ring at Sami Abdulrahman Park in Erbil and had given up hope. Someone found it and Bdozawa matched us the same day.', name: 'Avan Khan', detail: 'Reunited with a ring • Erbil' },
-            { quote: 'Found a wallet on the bus from Sulaymaniyah to Erbil and had it back to the owner within two hours. The whole process felt safe and simple.', name: 'Raman Muhammed', detail: 'Returned a wallet • Sulaymaniyah' },
-            { quote: 'Our dog got out near Azadi Park in Duhok and the community rallied. The alerts brought him home by nightfall.', name: 'Jamal Family', detail: 'Found their pet • Duhok' },
+            { quote: 'I left my laptop bag near the university campus in Erbil and panicked. Mohammed Sabir helped me track down the listing on Bdozawa within the hour.', name: 'Azad Aram', detail: 'Reunited with equipment • Erbil' },
+            { quote: 'Found a misplaced driving license card on the street in Sulaymaniyah. Using the platform, we safely returned it to the owner the same afternoon.', name: 'Akam Ali', detail: 'Returned an ID card • Sulaymaniyah' },
+            { quote: 'We coordinated our project research files and lost a flash drive near the library. Arez, Akam, and Zina helped post the alert and we recovered it immediately.', name: 'Zina Abdulla', detail: 'Recovered project data • Duhok' },
           ].map((story, idx) => (
             <div key={idx} style={{ backgroundColor: '#161b22', border: '1px solid #30363d', borderRadius: '12px', padding: '1.75rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '1.5rem' }}>
               <p style={{ color: '#c9d1d9', fontSize: '0.95rem', lineHeight: '1.5', fontStyle: 'italic' }}>"{story.quote}"</p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexDirection: dir === 'rtl' ? 'row-reverse' : 'row' }}>
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#21262d', color: '#58a6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '0.9rem' }}>
                   {story.name.charAt(0)}
                 </div>
@@ -345,14 +336,14 @@ const Home = () => {
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     cursor: 'pointer',
-                    textAlign: 'left'
+                    textAlign: dir === 'rtl' ? 'right' : 'left'
                   }}
                 >
                   {faq.q}
                   {isOpen ? <BiChevronUp size={20} /> : <BiChevronDown size={20} />}
                 </button>
                 {isOpen && (
-                  <div style={{ padding: '0 1.5rem 1.25rem 1.5rem', color: '#8b949e', fontSize: '0.95rem', lineHeight: '1.5' }}>
+                  <div style={{ padding: '0 1.5rem 1.25rem 1.5rem', color: '#8b949e', fontSize: '0.95rem', lineHeight: '1.5', textAlign: dir === 'rtl' ? 'right' : 'left' }}>
                     {faq.a}
                   </div>
                 )}
@@ -362,16 +353,16 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 8. BOTTOM CALL-TO-ACTION BANNER */}
+{/* 8. BOTTOM CALL-TO-ACTION BANNER */}
       <section style={{ backgroundColor: '#161b22', border: '1px solid #30363d', borderRadius: '16px', padding: '3rem 2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
-        <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#f0f6fc' }}>Lost something? Let's bring it home.</h2>
-        <p style={{ color: '#8b949e', maxWidth: '500px', fontSize: '0.95rem' }}>Join a community that believes in giving things back. Post your first listing in under a minute.</p>
+        <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#f0f6fc' }}>{t('lostSomethingTitle')}</h2>
+        <p style={{ color: '#8b949e', maxWidth: '500px', fontSize: '0.95rem' }}>{t('lostSomethingSubtitle')}</p>
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           <Link to="/register" style={{ padding: '0.75rem 1.5rem', backgroundColor: '#60a5fa', color: '#0d1117', borderRadius: '8px', fontWeight: 'bold', textDecoration: 'none' }}>
-            Report an item
+            {t('reportAnItem')}
           </Link>
           <Link to="/search" style={{ padding: '0.75rem 1.5rem', backgroundColor: '#0d1117', color: '#ffffff', border: '1px solid #30363d', borderRadius: '8px', fontWeight: 'bold', textDecoration: 'none' }}>
-            Browse items
+            {t('browseItems')}
           </Link>
         </div>
       </section>
