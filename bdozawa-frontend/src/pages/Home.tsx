@@ -57,31 +57,42 @@ const Home = () => {
   };
 
   const categories = [
-    { name: 'Electronics', desc: 'Phones, laptops, earbuds', icon: <FiPhone size={22} /> },
-    { name: 'Wallets & Cards', desc: 'Wallets, purses, cards', icon: <FiCreditCard size={22} /> },
-    { name: 'Keys', desc: 'House & car keys, fobs', icon: <FiKey size={22} /> },
-    { name: 'Bags & Luggage', desc: 'Backpacks, suitcases', icon: <FiBriefcase size={22} /> },
-    { name: 'Jewelry', desc: 'Rings, watches, necklaces', icon: <FiCompass size={22} /> },
-    { name: 'Documents', desc: 'IDs, passports, papers', icon: <FiFileText size={22} /> },
-    { name: 'Pets', desc: 'Dogs, cats & companions', icon: <FiHeart size={22} /> },
-    { name: 'Clothing', desc: 'Jackets, hats, scarves', icon: <FiTag size={22} /> },
-    { name: 'Accessories', desc: 'Glasses, umbrellas', icon: <FiEye size={22} /> },
-    { name: 'Other', desc: 'Everything else', icon: <FiBox size={22} /> },
+    { name: t('catElectronics'), desc: t('catElectronicsDesc'), icon: <FiPhone size={22} /> },
+    { name: t('catWallets'), desc: t('catWalletsDesc'), icon: <FiCreditCard size={22} /> },
+    { name: t('catKeys'), desc: t('catKeysDesc'), icon: <FiKey size={22} /> },
+    { name: t('catBags'), desc: t('catBagsDesc'), icon: <FiBriefcase size={22} /> },
+    { name: t('catJewelry'), desc: t('catJewelryDesc'), icon: <FiCompass size={22} /> },
+    { name: t('catDocuments'), desc: t('catDocumentsDesc'), icon: <FiFileText size={22} /> },
+    { name: t('catPets'), desc: t('catPetsDesc'), icon: <FiHeart size={22} /> },
+    { name: t('catClothing'), desc: t('catClothingDesc'), icon: <FiTag size={22} /> },
+    { name: t('catAccessories'), desc: t('catAccessoriesDesc'), icon: <FiEye size={22} /> },
+    { name: t('catOther'), desc: t('catOtherDesc'), icon: <FiBox size={22} /> },
   ];
 
   const faqs = [
     { q: t('isDozerFree'), a: t('isDozerFreeDesc') },
     { q: t('howKeepSafe'), a: t('howKeepSafeDesc') },
-    { q: 'How does smart matching work?', a: 'Our engine surfaces likely matches by comparing keywords, dates, and locations with a confidence score.' },
+    { q: t('faqSmartMatch'), a: t('faqSmartMatchDesc') },
     { q: t('whatDoBefore'), a: t('whatDoBeforeDesc') },
-    { q: 'Can I offer a reward?', a: 'Yes! You can optionally attach a reward amount when reporting a lost item to encourage quick community returns.' },
+    { q: t('faqReward'), a: t('faqRewardDesc') },
   ];
 
   const lostItemsList = items.filter(i => i.type.toLowerCase() === 'lost').slice(0, 2);
   const foundItemsList = items.filter(i => i.type.toLowerCase() === 'found').slice(0, 2);
 
   return (
-    <div style={{ width: '100%', padding: '2rem 3%', color: '#ffffff', display: 'flex', flexDirection: 'column', gap: '5rem', boxSizing: 'border-box', textAlign: dir === 'rtl' ? 'right' : 'left' }}>
+    <div style={{ 
+      width: '100%', 
+      maxWidth: '1350px', 
+      margin: '0 auto', 
+      padding: '2rem 3%', 
+      color: '#ffffff', 
+      display: 'flex', 
+      flexDirection: 'column', 
+      gap: '5rem', 
+      boxSizing: 'border-box', 
+      textAlign: dir === 'rtl' ? 'right' : 'left' 
+    }}>
     
       {/* 1. HERO SECTION */}
       <section style={{ textAlign: 'center', padding: '3rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
@@ -96,7 +107,7 @@ const Home = () => {
         <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           <Link to="/register" style={{
             padding: '0.75rem 1.5rem',
-            backgroundColor: '#f59e0b', // Diwaxan warm gold accent
+            backgroundColor: '#f59e0b', 
             color: '#0d1117',
             borderRadius: '8px',
             fontWeight: 'bold',
@@ -147,7 +158,7 @@ const Home = () => {
             top: '50%',
             transform: 'translateY(-50%)',
             padding: '0.6rem 1.25rem',
-            backgroundColor: '#f59e0b', // Diwaxan warm gold accent
+            backgroundColor: '#f59e0b', 
             color: '#0d1117',
             border: 'none',
             borderRadius: '8px',
@@ -218,7 +229,7 @@ const Home = () => {
             {lostItemsList.map(item => (
               <div key={item.id} style={{ backgroundColor: '#161b22', border: '1px solid #30363d', borderRadius: '12px', padding: '1.25rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
-                  <span style={{ backgroundColor: '#7f1d1d', color: '#fca5a5', padding: '2px 8px', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 'bold' }}>Lost</span>
+                  <span style={{ backgroundColor: '#7f1d1d', color: '#fca5a5', padding: '2px 8px', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 'bold' }}>{t('badgeLost')}</span>
                   <h4 style={{ fontSize: '1.1rem', fontWeight: 'bold', marginTop: '0.5rem', color: '#f0f6fc' }}>{item.title}</h4>
                   <p style={{ color: '#8b949e', fontSize: '0.85rem', marginTop: '0.25rem' }}>{item.description}</p>
                 </div>
@@ -242,7 +253,7 @@ const Home = () => {
             {foundItemsList.map(item => (
               <div key={item.id} style={{ backgroundColor: '#161b22', border: '1px solid #30363d', borderRadius: '12px', padding: '1.25rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
-                  <span style={{ backgroundColor: '#14532d', color: '#86efac', padding: '2px 8px', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 'bold' }}>Found</span>
+                  <span style={{ backgroundColor: '#14532d', color: '#86efac', padding: '2px 8px', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 'bold' }}>{t('badgeFound')}</span>
                   <h4 style={{ fontSize: '1.1rem', fontWeight: 'bold', marginTop: '0.5rem', color: '#f0f6fc' }}>{item.title}</h4>
                   <p style={{ color: '#8b949e', fontSize: '0.85rem', marginTop: '0.25rem' }}>{item.description}</p>
                 </div>
@@ -257,15 +268,15 @@ const Home = () => {
       {/* 5. HOW IT WORKS */}
       <section id="how-it-works" style={{ textAlign: 'center', padding: '2rem 0' }}>
         <span style={{ color: '#f59e0b', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>{t('howItWorks')}</span>
-        <h2 style={{ fontSize: '2.2rem', fontWeight: 'bold', marginTop: '0.25rem', marginBottom: '0.5rem' }}>Four simple steps to a happy ending</h2>
-        <p style={{ color: '#8b949e', marginBottom: '3rem' }}>No accounts to wrestle with, no friction — just a clear path from lost to found.</p>
+        <h2 style={{ fontSize: '2.2rem', fontWeight: 'bold', marginTop: '0.25rem', marginBottom: '0.5rem' }}>{t('howItWorksTitle')}</h2>
+        <p style={{ color: '#8b949e', marginBottom: '3rem' }}>{t('howItWorksSubtitle')}</p>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', textAlign: dir === 'rtl' ? 'right' : 'left' }}>
           {[
-            { step: '1', title: 'Report it', desc: 'Add a photo and a few details. It takes less than a minute.' },
-            { step: '2', title: 'Get matched', desc: 'Our engine surfaces likely matches with a confidence score.' },
-            { step: '3', title: 'Connect safely', desc: 'Chat securely to verify ownership before meeting up.' },
-            { step: '4', title: 'Reunite', desc: 'Arrange a handoff and mark it resolved. Everyone wins.' },
+            { step: '1', title: t('step1Title'), desc: t('step1Desc') },
+            { step: '2', title: t('step2Title'), desc: t('step2Desc') },
+            { step: '3', title: t('step3Title'), desc: t('step3Desc') },
+            { step: '4', title: t('step4Title'), desc: t('step4Desc') },
           ].map((s, idx) => (
             <div key={idx} style={{ backgroundColor: '#161b22', border: '1px solid #30363d', borderRadius: '12px', padding: '1.75rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -289,9 +300,9 @@ const Home = () => {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem', textAlign: dir === 'rtl' ? 'right' : 'left' }}>
           {[
-            { quote: 'I left my laptop bag near the university campus in Erbil and panicked. Mohammed Sabir helped me track down the listing on Bdozawa within the hour.', name: 'Azad Aram', detail: 'Reunited with equipment • Erbil' },
-            { quote: 'Found a misplaced driving license card on the street in Sulaymaniyah. Using the platform, we safely returned it to the owner the same afternoon.', name: 'Akam Ali', detail: 'Returned an ID card • Sulaymaniyah' },
-            { quote: 'We coordinated our project research files and lost a flash drive near the library. Arez, Akam, and Zina helped post the alert and we recovered it immediately.', name: 'Zina Abdulla', detail: 'Recovered project data • Duhok' },
+            { quote: t('story1Quote'), name: t('story1Name'), detail: t('story1Detail') },
+            { quote: t('story2Quote'), name: t('story2Name'), detail: t('story2Detail') },
+            { quote: t('story3Quote'), name: t('story3Name'), detail: t('story3Detail') },
           ].map((story, idx) => (
             <div key={idx} style={{ backgroundColor: '#161b22', border: '1px solid #30363d', borderRadius: '12px', padding: '1.75rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '1.5rem' }}>
               <p style={{ color: '#c9d1d9', fontSize: '0.95rem', lineHeight: '1.5', fontStyle: 'italic' }}>"{story.quote}"</p>
@@ -313,8 +324,8 @@ const Home = () => {
       <section style={{ maxWidth: '800px', margin: '0 auto', width: '100%', padding: '2rem 0' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <span style={{ color: '#f59e0b', fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase' }}>FAQ</span>
-          <h2 style={{ fontSize: '2.2rem', fontWeight: 'bold', marginTop: '0.25rem', marginBottom: '0.5rem' }}>Questions, answered</h2>
-          <p style={{ color: '#8b949e' }}>Everything you need to feel confident using Bdozawa.</p>
+          <h2 style={{ fontSize: '2.2rem', fontWeight: 'bold', marginTop: '0.25rem', marginBottom: '0.5rem' }}>{t('faqTitle')}</h2>
+          <p style={{ color: '#8b949e' }}>{t('faqSubtitle')}</p>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>

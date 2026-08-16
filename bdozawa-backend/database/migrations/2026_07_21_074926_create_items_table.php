@@ -6,25 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-   public function up(): void
-{
-    Schema::create('items', function (Blueprint $table) {
-        $table->id();
-        $table->string('title'); // e.g., "Lost iPhone 14", "Found Car Keys"
-        $table->text('description'); // Detailed description of the item
-        $table->string('type'); // Will strictly be either 'lost' or 'found'
-        $table->string('location')->nullable(); // Where it was lost/found
-        $table->string('image_path')->nullable(); // For the uploaded picture
-        $table->string('contact_info'); // Phone number or email
-        $table->timestamps();
-    });
-}
-    /**
-     * Reverse the migrations.
-     */
+    public function up(): void
+    {
+        Schema::create('items', function (Blueprint $table) {
+            $table->id();
+            $table->string('secret_question')->nullable();
+            $table->string('secret_answer')->nullable();
+            // This is the crucial line that connects the item to the hub/user!
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->string('type'); // 'Lost' or 'Found'
+            $table->string('category')->nullable();
+            $table->string('location')->nullable();
+            $table->string('image_url')->nullable(); // Matches React
+            $table->string('contact_info')->nullable();
+            $table->string('reward')->nullable();
+            $table->integer('views')->default(0); // Matches React
+            
+            $table->timestamps();
+        });
+    }
+
     public function down(): void
     {
         Schema::dropIfExists('items');

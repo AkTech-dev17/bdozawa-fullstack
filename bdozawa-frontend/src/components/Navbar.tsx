@@ -14,11 +14,11 @@ const Navbar = () => {
 
   const isDark = theme === 'dark';
 
-  // Mapped language codes ('ku', 'en', 'ar') to match ThemeLanguageContext & Axios
+  // Match the exact string union types defined in ThemeLanguageContext ('Kurdish (Sorani)' | 'English' | 'Arabic')
   const languages = [
-    { code: 'ku', name: 'Kurdish (Sorani)', native: 'کوردی' },
-    { code: 'en', name: 'English', native: 'English' },
-    { code: 'ar', name: 'Arabic', native: 'العربية' },
+    { name: 'Kurdish (Sorani)', native: 'کوردی' },
+    { name: 'English', native: 'English' },
+    { name: 'Arabic', native: 'العربية' },
   ] as const;
 
   // Function to smoothly scroll to sections on the Home page
@@ -126,12 +126,12 @@ const Navbar = () => {
                 zIndex: 100
               }}>
                 {languages.map((lang) => {
-                  const isSelected = language === (lang.code as unknown);
+                  const isSelected = language === lang.name;
                   return (
                     <div 
-                      key={lang.code}
+                      key={lang.name}
                       onClick={() => {
-                        setLanguage(lang.code as never);
+                        setLanguage(lang.name as never);
                         setIsLangOpen(false);
                       }}
                       style={{

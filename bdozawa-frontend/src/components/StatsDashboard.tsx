@@ -1,11 +1,14 @@
 import { FiHeart, FiUsers, FiLayers, FiTrendingUp } from 'react-icons/fi';
+import { useThemeLanguage } from '../context/ThemeLanguageContext';
 
 const StatsDashboard = () => {
+  const { t } = useThemeLanguage();
+
   const stats = [
-    { label: 'Items reunited', value: '1', icon: <FiHeart size={18} color="#8b949e" /> },
-    { label: 'Members', value: '23', icon: <FiUsers size={18} color="#8b949e" /> },
-    { label: 'Active listings', value: '3', icon: <FiLayers size={18} color="#8b949e" /> },
-    { label: 'Reunion rate', value: '25%', icon: <FiTrendingUp size={18} color="#8b949e" /> },
+    { label: t('itemsReunited'), value: '1', icon: <FiHeart size={18} color="#8b949e" /> },
+    { label: t('members'), value: '23', icon: <FiUsers size={18} color="#8b949e" /> },
+    { label: t('activeListings'), value: '3', icon: <FiLayers size={18} color="#8b949e" /> },
+    { label: t('reunionRate'), value: '25%', icon: <FiTrendingUp size={18} color="#8b949e" /> },
   ];
 
   return (

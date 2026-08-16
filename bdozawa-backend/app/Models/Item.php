@@ -9,11 +9,22 @@ class Item extends Model
 {
     use HasFactory;
 
-    // This tells Laravel: "It is safe to save data into these specific columns!"
     protected $fillable = [
+        'user_id',
         'title',
         'description',
         'type',
-        'contact_info'
+        'category',
+        'location',
+        'image_url',
+        'contact_info',
+        'reward',
+        'views'
     ];
+
+    // This tells Laravel that every item belongs to one specific user (or hub)
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
