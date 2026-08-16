@@ -14,6 +14,7 @@ interface ThemeLanguageContextType {
 
 const translations: Record<Language, Record<string, string>> = {
   'English': {
+    // ... (keep all your existing English keys from before)
     lostItems: 'Lost items',
     foundItems: 'Found items',
     howItWorks: 'How it works',
@@ -57,7 +58,6 @@ const translations: Record<Language, Record<string, string>> = {
     careers: 'Careers',
     allRightsReserved: '© 2026 Bdozawa. All rights reserved.',
     
-    // Additional UI & Category translations
     faqTitle: 'Questions, answered',
     faqSubtitle: 'Everything you need to feel confident using Bdozawa.',
     howItWorksTitle: 'Four simple steps to a happy ending',
@@ -71,7 +71,6 @@ const translations: Record<Language, Record<string, string>> = {
     step4Title: 'Reunite',
     step4Desc: 'Arrange a handoff and mark it resolved. Everyone wins.',
     
-    // Categories
     catElectronics: 'Electronics',
     catElectronicsDesc: 'Phones, laptops, earbuds',
     catWallets: 'Wallets & Cards',
@@ -93,7 +92,6 @@ const translations: Record<Language, Record<string, string>> = {
     catOther: 'Other',
     catOtherDesc: 'Everything else',
 
-    // Badges, FAQs, and Success Stories
     badgeLost: 'Lost',
     badgeFound: 'Found',
     faqSmartMatch: 'How does smart matching work?',
@@ -110,7 +108,6 @@ const translations: Record<Language, Record<string, string>> = {
     story3Name: 'Zina Abdulla',
     story3Detail: 'Recovered project data • Duhok',
 
-    // Register / Login Page Keys
     backHome: 'Back home',
     createAccountTitle: 'Create account',
     createAccountSubtitle: 'Join Bdozawa to report and find lost items',
@@ -126,7 +123,61 @@ const translations: Record<Language, Record<string, string>> = {
     privateSecure: 'Private & secure',
     privateSecureDesc: 'Your details stay yours',
     trustedCommunity: 'Trusted community',
-    trustedCommunityDesc: '126k+ verified members'
+    trustedCommunityDesc: '126k+ verified members', 
+    welcomeBack: 'Welcome back',
+    loginSubtitle: 'Sign in to manage your listings and messages',
+    orContinueEmail: 'or continue with email',
+    forgotPassword: 'Forgot password?',
+    signInBtn: 'Sign in',
+    magicLink: 'Email me a magic link instead',
+    newHere: 'New here?',
+    createAccountLink: 'Create an account',
+    loginRightTitle: "Lost something? You're one step away from getting it back.",
+
+    // NEW SEARCH & FILTER KEYS:
+    searchPageTitle: 'Search items',
+    searchPageSubtitle: 'Filter by type, category and keywords to find what you\'re looking for',
+    searchInputPlaceholder: 'Search by title, brand, location, keyword',
+    allCategories: 'All categories',
+    allTypes: 'All items',
+    mostRecent: 'Most recent',
+    clearFilters: 'Clear filters',
+    noMatchingItems: 'No matching items',
+    tryAdjustingFilters: 'Try adjusting your filters or search terms',
+  
+    itemNotFound: 'Item not found',
+itemNotFoundDesc: "The item you are looking for doesn't exist or has been removed.",
+goBackSearch: 'Go back to search',
+mustBeSignedIn: 'You must be signed in',
+sendSecureMessage: 'Send a secure message',
+introduceYourself: 'Introduce yourself and explain how you can help with this item.',
+shareDetailsTip: 'Tip: share details only the true owner would know to verify ownership.',
+messagePlaceholder: 'Hi, I think this might be mine...',
+sendMessageBtn: 'Send message',
+home: 'Home',
+views: 'views',
+description: 'Description',
+category: 'Category',
+dateLostStr: 'Date lost',
+dateFoundStr: 'Date found',
+colour: 'Colour',
+ownerStr: 'Owner',
+reports: 'Reports',
+helpful: 'Helpful',
+contactBtn: 'Contact',
+saveBtn: 'Save',
+locationStr: 'LOCATION',
+clickForDirections: 'Click map for directions',
+country: 'COUNTRY',
+city: 'CITY',
+signInToSave: 'Sign in to save listings',
+oldest: 'Oldest',
+searching: 'Searching...',
+itemsFound: 'items found',
+itemFound: 'item found',
+reward: 'Reward',
+justNow: 'Just now',
+unknownLocation: 'Unknown location',
   },
   'Kurdish (Sorani)': {
     lostItems: 'شتە ونبووەکان',
@@ -161,7 +212,7 @@ const translations: Record<Language, Record<string, string>> = {
     whatDoBefore: 'چۆن بەر لە ملاقاتکردنی کەسێک ماڵ؟',
     whatDoBeforeDesc: 'هەمووکات لە شوێنێکی گشتی و ڕووناکدا یەکتر ببینن و وردەکارییەکان بپشکنن.',
     lostSomethingTitle: 'شتێکت ون بووە؟ با بینێرینەوە بۆ ماڵەوە.',
-    lostSomethingSubtitle: 'بەشداری لە کۆمەڵگەیەک بکە کە باوەڕی بە گەڕاندنەوەی شتەکان هەیە. یەکەم ڕاپۆرتی خۆت لە کەمتر لە خولەکێکدا بلاوبکەرەوە.',
+    lostSomethingSubtitle: 'بەشداری لە کۆمەڵگەیەک بکە کە باوەڕی بە گەڕاندنەوەی شتەکان هەیە. یەکەم ڕاپۆرتی خۆت لە کەمتر لە خولەکێکی دەوێت.',
     reportAnItem: 'ڕاپۆرتی شتێك',
     browseItems: 'گەڕان بە شتەکاندا',
     footerTagline: 'ڕێگەی متمانەپێکراو بۆ کۆکردنەوەی خەڵک لەگەڵ ئەوەی ونیان کردووە — بە هاوکاری کۆمەڵگە.',
@@ -172,7 +223,6 @@ const translations: Record<Language, Record<string, string>> = {
     careers: 'هەلی کار',
     allRightsReserved: '© ٢٠٢٦ بێدۆزە. هەموو مافەکان پارێزراون.',
 
-    // Additional UI & Category translations
     faqTitle: 'پرسیارەکان، وەڵام دراونەتەوە',
     faqSubtitle: 'هەموو ئەوەی پێویستە بۆ دڵنیابوون لە بەکارهێنانی بێدۆزە.',
     howItWorksTitle: 'چوار هەنگاوی ساده بۆ کۆتاییەکی خۆش',
@@ -186,7 +236,6 @@ const translations: Record<Language, Record<string, string>> = {
     step4Title: 'یەکتربینینەوە',
     step4Desc: 'ڕادەستکردن ڕێکخە و بە چارەسەرکراو تۆماری بکە. هەمووان سەرکەوتوون.',
 
-    // Categories
     catElectronics: 'ئەلکترۆنیات',
     catElectronicsDesc: 'تەلەفۆن، لپتۆپ، گوێبیست',
     catWallets: 'جزدان و کارتەکان',
@@ -208,7 +257,6 @@ const translations: Record<Language, Record<string, string>> = {
     catOther: 'هی تر',
     catOtherDesc: 'هەموو شتێکی تر',
 
-    // Badges, FAQs, and Success Stories
     badgeLost: 'ونبوو',
     badgeFound: 'دۆزراوە',
     faqSmartMatch: 'گونجاندنی زیرەک چۆن کار دەکات؟',
@@ -225,7 +273,6 @@ const translations: Record<Language, Record<string, string>> = {
     story3Name: 'زینا عەبدوڵا',
     story3Detail: 'گەڕاندنەوەی داتای پڕۆژە • دهۆک',
 
-    // Register / Login Page Keys
     backHome: 'گەڕانەوە بۆ سەرەتا',
     createAccountTitle: 'هەژمار دروست بکە',
     createAccountSubtitle: 'بەشداری لە بێدۆزە بکە بۆ ڕاپۆرتکردن و دۆزینەوەی شتە ونبووەکان',
@@ -241,7 +288,60 @@ const translations: Record<Language, Record<string, string>> = {
     privateSecure: 'تایبەت و سەلامەت',
     privateSecureDesc: 'زانیارییەکانت بۆ خۆت دەمێننەوە',
     trustedCommunity: 'کۆمەڵگەی متمانەپێکراو',
-    trustedCommunityDesc: '١٢٦ هەزار+ ئەندامی پشتڕاستکراوە'
+    trustedCommunityDesc: '١٢٦ هەزار+ ئەندامی پشتڕاستکراوە',
+    welcomeBack: 'بەخێراییەتەوە',
+    loginSubtitle: 'چوونەژوورەوە بۆ بەڕێوەبردنی ڕاپۆرت و نامەکانت.',
+    orContinueEmail: 'یان بە ئیمەیڵ بەردەوام بە',
+    forgotPassword: 'وشەی نهێنیت بیرچووە؟',
+    signInBtn: 'چوونەژوورەوە',
+    magicLink: 'لە جێی ئەوە بە ستەری جادویی بنێره',
+    newHere: 'تازەیت؟',
+    createAccountLink: 'هەژمار دروست بکە',
+    loginRightTitle: 'شتێکت ون بووە؟ تەنها یەک هەنگاو ماوە بۆ گەڕاندنەوەی.',
+
+    // Kurdish Search & Filters:
+    searchPageTitle: 'گەڕان بەدوای شتەکاندا',
+    searchPageSubtitle: 'پاڵاوتن بەپێی جۆر، پۆل و وشە سەرەکییەکان بۆ دۆزینەوەی ئەوەی دەگەڕێیت بەدوایدا',
+    searchInputPlaceholder: 'گەڕان بەپێی ناونیشان، براند، شوێن، وشەی سەرەکی',
+    allCategories: 'هەموو پۆلەکان',
+    allTypes: 'هەموو شتەکان',
+    mostRecent: 'نوێترین',
+    clearFilters: 'پاککردنەوەی پاڵاوتنەکان',
+    noMatchingItems: 'هیچ شتێکی هاوشێوە نەدۆزرایەوە',
+    tryAdjustingFilters: 'هەوڵ بدە پاڵاوتنەکان یان وشەکانی گەڕان بگۆڕیت',
+    itemNotFound: 'شتەکە نەدۆزرایەوە',
+itemNotFoundDesc: 'ئەو شتەی بەدوایدا دەگەڕێیت بوونی نییە یان سڕاوەتەوە.',
+goBackSearch: 'گەڕانەوە بۆ گەڕان',
+mustBeSignedIn: 'پێویستە بچیتە ژوورەوە',
+sendSecureMessage: 'نامەیەکی پارێزراو بنێرە',
+introduceYourself: 'خۆت بناسێنە و ڕوونی بکەرەوە چۆن دەتوانیت یارمەتیدەر بیت.',
+shareDetailsTip: 'ئامۆژگاری: تەنها ئەو وردەکارییانە بڵێ کە خاوەنی ڕاستەقینە دەیزانێت بۆ سەلماندنی خاوەندارێتی.',
+messagePlaceholder: 'سڵاو، پێموایە ئەمە هی من بێت...',
+sendMessageBtn: 'ناردنی نامە',
+home: 'سەرەتا',
+views: 'بینین',
+description: 'وردەکارییەکان',
+category: 'پۆل',
+dateLostStr: 'بەرواری ونبوون',
+dateFoundStr: 'بەرواری دۆزینەوە',
+colour: 'ڕەنگ',
+ownerStr: 'خاوەن',
+reports: 'ڕاپۆرتەکان',
+helpful: 'بەسوود',
+contactBtn: 'پەیوەندی بکە بە',
+saveBtn: 'پاشەکەوت',
+locationStr: 'شوێن',
+clickForDirections: 'بۆ نەخشە کلیک بکە',
+country: 'وڵات',
+city: 'شار',
+signInToSave: 'بچۆ ژوورەوە بۆ پاشەکەوتکردن',
+oldest: 'کۆنترین',
+searching: 'گەڕان...',
+itemsFound: 'شت دۆزرایەوە',
+itemFound: 'شت دۆزرایەوە',
+reward: 'پاداشت',
+justNow: 'هەر ئێستا',
+unknownLocation: 'شوێنی نەزانراو',
   },
   'Arabic': {
     lostItems: 'العناصر المفقودة',
@@ -287,7 +387,6 @@ const translations: Record<Language, Record<string, string>> = {
     careers: 'وظائف',
     allRightsReserved: '© 2026 Bdozawa. جميع الحقوق محفوظة.',
 
-    // Additional UI & Category translations
     faqTitle: 'أسئلة مع إجاباتها',
     faqSubtitle: 'كل ما تحتاجه لتشعر بالثقة عند استخدام Bdozawa.',
     howItWorksTitle: 'أربع خطوات بسيطة لنهاية سعيدة',
@@ -301,7 +400,6 @@ const translations: Record<Language, Record<string, string>> = {
     step4Title: 'أعد الغرض',
     step4Desc: 'رتب موعد التسليم واجعله محلولاً. الجميع يربح.',
 
-    // Categories
     catElectronics: 'إلكترونيات',
     catElectronicsDesc: 'هواتف، أجهزة حاسوب، سماعات',
     catWallets: 'محافظ وبطاقات',
@@ -323,7 +421,6 @@ const translations: Record<Language, Record<string, string>> = {
     catOther: 'أخرى',
     catOtherDesc: 'كل ما عدا ذلك',
 
-    // Badges, FAQs, and Success Stories
     badgeLost: 'مفقود',
     badgeFound: 'موجود',
     faqSmartMatch: 'كيف يعمل التطابق الذكي؟',
@@ -340,7 +437,6 @@ const translations: Record<Language, Record<string, string>> = {
     story3Name: 'زينا عبد الله',
     story3Detail: 'استعادة بيانات مشروع • دهوك',
 
-    // Register / Login Page Keys
     backHome: 'العودة للرئيسية',
     createAccountTitle: 'إنشاء حساب',
     createAccountSubtitle: 'انضم إلى Bdozawa للإبلاغ عن العناصر المفقودة والعثور عليها',
@@ -356,7 +452,60 @@ const translations: Record<Language, Record<string, string>> = {
     privateSecure: 'خاص وآمن',
     privateSecureDesc: 'تفاصيلك تبقى ملكاً لك',
     trustedCommunity: 'مجتمع موثوق',
-    trustedCommunityDesc: 'أكثر من 126 ألف عضو معتمد'
+    trustedCommunityDesc: 'أكثر من 126 ألف عضو معتمد',
+    welcomeBack: 'مرحباً بك مجدداً',
+    loginSubtitle: 'تسجيل الدخول لإدارة قوائمك ورسائلك.',
+    orContinueEmail: 'أو المتابعة بريد الإلكتروني',
+    forgotPassword: 'هل نسيت كلمة المرور؟',
+    signInBtn: 'تسجيل الدخول',
+    magicLink: 'أرسل لي رابطاً سحرياً بدلاً من ذلك',
+    newHere: 'جديد هنا؟',
+    createAccountLink: 'انشئ حساباً',
+    loginRightTitle: 'فقدت شيئاً؟ أنت على بعد خطوة واحدة من استعادته.',
+
+    // Arabic Search & Filters:
+    searchPageTitle: 'البحث عن العناصر',
+    searchPageSubtitle: 'التصفية حسب النوع والفئة والكلمات الرئيسية للعثور على ما تبحث عنه',
+    searchInputPlaceholder: 'البحث بالعنوان، العلامة التجارية، الموقع، الكلمة الرئيسية',
+    allCategories: 'جميع الفئات',
+    allTypes: 'جميع العناصر',
+    mostRecent: 'الأحدث',
+    clearFilters: 'مسح عوامل التصفية',
+    noMatchingItems: 'لا توجد عناصر مطابقة',
+    tryAdjustingFilters: 'جرب ضبط عوامل التصفية أو مصطلحات البحث',
+    itemNotFound: 'العنصر غير موجود',
+itemNotFoundDesc: 'العنصر الذي تبحث عنه غير موجود أو تمت إزالته.',
+goBackSearch: 'العودة للبحث',
+mustBeSignedIn: 'يجب تسجيل الدخول',
+sendSecureMessage: 'إرسال رسالة آمنة',
+introduceYourself: 'قدم نفسك واشرح كيف يمكنك المساعدة.',
+shareDetailsTip: 'نصيحة: شارك فقط التفاصيل التي يعرفها المالك الحقيقي لإثبات الملكية.',
+messagePlaceholder: 'مرحباً، أعتقد أن هذا قد يكون لي...',
+sendMessageBtn: 'إرسال رسالة',
+home: 'الرئيسية',
+views: 'مشاهدة',
+description: 'الوصف',
+category: 'الفئة',
+dateLostStr: 'تاريخ الفقدان',
+dateFoundStr: 'تاريخ العثور',
+colour: 'اللون',
+ownerStr: 'المالك',
+reports: 'التقارير',
+helpful: 'مفيد',
+contactBtn: 'تواصل مع',
+saveBtn: 'حفظ',
+locationStr: 'الموقع',
+clickForDirections: 'انقر للاتجاهات',
+country: 'الدولة',
+city: 'المدينة',
+signInToSave: 'تسجيل الدخول لحفظ القوائم',
+oldest: 'الأقدم',
+searching: 'جاري البحث...',
+itemsFound: 'عناصر تم العثور عليها',
+itemFound: 'عنصر تم العثور عليه',
+reward: 'مكافأة',
+justNow: 'الآن',
+unknownLocation: 'موقع غير معروف',
   }
 };
 
@@ -379,7 +528,12 @@ export const ThemeLanguageProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [dir, theme]);
 
   const t = (key: string): string => {
-    return translations[language][key] || key;
+    const text = translations[language][key] || key;
+    // Enforce BiDi directional isolation to fix period/punctuation inversion in RTL views
+    if (dir === 'rtl') {
+      return `\u2066${text}\u2069`;
+    }
+    return text;
   };
 
   return (

@@ -103,7 +103,7 @@ const Home = () => {
           {t('heroSubtitle')}
         </p>
 
-        {/* Action Buttons */}
+      {/* Action Buttons */}
         <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           <Link to="/register" style={{
             padding: '0.75rem 1.5rem',
@@ -118,7 +118,7 @@ const Home = () => {
           }}>
             {t('reportLost')} <FiArrowRight size={18} style={{ transform: dir === 'rtl' ? 'scaleX(-1)' : 'none' }} />
           </Link>
-          <Link to="/search" style={{
+          <Link to="/login" style={{
             padding: '0.75rem 1.5rem',
             backgroundColor: '#161b22',
             color: '#ffffff',

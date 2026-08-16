@@ -7,12 +7,13 @@ import logoImg from '../assets/bdozawa.png';
 
 const Navbar = () => {
   const [isLangOpen, setIsLangOpen] = useState(false);
-  const { language, setLanguage, theme, toggleTheme, t } = useThemeLanguage();
+  const { language, setLanguage, theme, toggleTheme, t, dir } = useThemeLanguage();
   
   const location = useLocation();
   const navigate = useNavigate();
 
   const isDark = theme === 'dark';
+  const isRtl = dir === 'rtl';
 
   // Match the exact string union types defined in ThemeLanguageContext ('Kurdish (Sorani)' | 'English' | 'Arabic')
   const languages = [
@@ -46,28 +47,32 @@ const Navbar = () => {
       top: 0,
       zIndex: 100,
       boxSizing: 'border-box',
-      transition: 'background-color 0.2s, border-color 0.2s'
+      transition: 'background-color 0.2s, border-color 0.2s',
+      flexDirection: isRtl ? 'row-reverse' : 'row',
+      textAlign: isRtl ? 'right' : 'left'
     }}>
       
       {/* Left Side: Logo & Navigation Links */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '3rem' }}>
-        <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '3rem', flexDirection: isRtl ? 'row-reverse' : 'row' }}>
+        
+        {/* LOGO UPDATE HERE */}
+        <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', flexDirection: isRtl ? 'row-reverse' : 'row' }}>
           <img 
             src={logoImg} 
             alt="Bdozawa Logo" 
             style={{ 
-              width: '198px', 
-              height: '38px', 
+              width: '32px', 
+              height: '32px', 
               objectFit: 'contain', 
               filter: isDark ? 'brightness(0) invert(1)' : 'none'
             }} 
           />
-          <h1 style={{ color: isDark ? '#ffffff' : '#111827', fontSize: '1.5rem', margin: 0, fontWeight: 'bold' }}>
+          <h1 style={{ color: isDark ? '#ffffff' : '#111827', fontSize: '1.4rem', margin: 0, fontWeight: '700', letterSpacing: '-0.5px' }}>
             Bdozawa
           </h1>
         </Link>
 
-        <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexDirection: isRtl ? 'row-reverse' : 'row' }}>
           <Link to="/search?type=lost" style={{ color: isDark ? '#d1d5db' : '#4b5563', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '500' }}>
             {t('lostItems')}
           </Link>
@@ -93,9 +98,9 @@ const Navbar = () => {
       </div>
 
       {/* Right Side: Search, Language, Theme & Auth */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', color: isDark ? '#f9fafb' : '#374151' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', color: isDark ? '#f9fafb' : '#374151', flexDirection: isRtl ? 'row-reverse' : 'row' }}>
         
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexDirection: isRtl ? 'row-reverse' : 'row' }}>
           <Link to="/search" style={{ color: 'inherit', display: 'flex', alignItems: 'center' }}>
             <FiSearch size={20} style={{ cursor: 'pointer' }} />
           </Link>
@@ -112,7 +117,7 @@ const Navbar = () => {
               <div style={{
                 position: 'absolute',
                 top: '100%',
-                right: 0,
+                [isRtl ? 'left' : 'right']: 0,
                 marginTop: '10px',
                 width: '220px',
                 backgroundColor: isDark ? '#161b22' : '#ffffff',
@@ -123,7 +128,8 @@ const Navbar = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '4px',
-                zIndex: 100
+                zIndex: 100,
+                textAlign: isRtl ? 'right' : 'left'
               }}>
                 {languages.map((lang) => {
                   const isSelected = language === lang.name;
@@ -142,6 +148,7 @@ const Navbar = () => {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         cursor: 'pointer',
+                        flexDirection: isRtl ? 'row-reverse' : 'row'
                       }}
                     >
                       <span style={{ fontWeight: isSelected ? 'bold' : 'normal', color: isDark ? '#f0f6fc' : '#111827', fontSize: '0.9rem' }}>
@@ -175,7 +182,7 @@ const Navbar = () => {
         </div>
         
         {/* Auth Buttons */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginLeft: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginInlineStart: '1rem', flexDirection: isRtl ? 'row-reverse' : 'row' }}>
           <Link to="/login" style={{ color: isDark ? '#ffffff' : '#111827', textDecoration: 'none', fontWeight: 'bold', fontSize: '0.95rem' }}>
             {t('signIn')}
           </Link>
@@ -198,4 +205,5 @@ const Navbar = () => {
   );
 };
 
+Navbar.displayName = 'Navbar';
 export default Navbar;

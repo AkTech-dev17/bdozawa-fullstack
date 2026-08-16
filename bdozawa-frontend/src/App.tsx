@@ -10,16 +10,20 @@ import HowItWorks from './pages/HowItWorks';
 import ItemDetail from './pages/ItemDetail';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import PostItem from './components/PostItem';
+import VerifiedHubDashboard from './pages/VerifiedHubDashboard';
 
 // Inner component to handle document direction (RTL/LTR) based on current language
 function DocumentDirectionHandler({ children }: { children: React.ReactNode }) {
   const { language } = useThemeLanguage();
 
   useEffect(() => {
+    const currentLanguage = String(language);
+
     // Apply RTL for Arabic and Kurdish, LTR for English
-    if (language === 'ar' || language === 'ku') {
+    if (currentLanguage === 'ar' || currentLanguage === 'ku') {
       document.documentElement.dir = 'rtl';
-      document.documentElement.lang = language;
+      document.documentElement.lang = currentLanguage;
     } else {
       document.documentElement.dir = 'ltr';
       document.documentElement.lang = 'en';
@@ -53,6 +57,9 @@ function App() {
                     <Route path="/how-it-works" element={<HowItWorks />} />
                     <Route path="/success-stories" element={<div>Success Stories Page</div>} />
                     <Route path="/item/:id" element={<ItemDetail />} />
+                    <Route path="/hub/post" element={<PostItem />} />                
+                     <Route path="/hub/dashboard" element={<VerifiedHubDashboard />} />
+                     <Route path="/post" element={<PostItem />} />
                   </Routes>
                 </main>
                 <Footer />
